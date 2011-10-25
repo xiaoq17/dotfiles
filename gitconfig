@@ -1,0 +1,19 @@
+[user]
+	name = Qin Xiao
+	email = xiaoq08@163.com
+[color]
+	ui = true
+[core]
+#  gitproxy = /usr/local/bin/proxy-wrapper
+[alias]
+	tree = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %C(bold blue)<%an>%Creset %Cgreen(%cd)%Creset' --graph --date=short
+	di = icdiff
+[core]
+	editor = /usr/bin/vim
+	excludesfile = ~/.gitignore_global
+[push]
+	default = simple
+[filter "lfs"]
+	clean = git lfs clean %f
+	smudge = git lfs smudge %f
+	required = true
