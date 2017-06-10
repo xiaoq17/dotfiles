@@ -14,7 +14,8 @@
 
 ```bash
 $ dotfiles=/Users/xiaoqin/workspace/dotfiles ./link.sh
-$ cd vscode # link to ~/Library/Application Support/Code/User
+$ cd vscode
+# link to ~/Library/Application Support/Code/User
 $ defaults write com.sublimetext.3 ApplePressAndHoldEnabled -bool false
 $ defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool false         # For VS Code
 $ defaults write com.microsoft.VSCodeInsiders ApplePressAndHoldEnabled -bool false # For VS Code Insider

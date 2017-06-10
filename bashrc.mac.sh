@@ -29,7 +29,17 @@ function console_hints () {
     LANG_HINT="$PY_HINT;"$LANG_HINT
   fi
   GIT_HINT=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'`
-  echo $TIME_HINT$IP_HINT$GIT_HINT' ('$LANG_HINT')'
+  echo $TIME_HINT$IP_HINT$GIT_HINT' '`docker-env`' ('$LANG_HINT')'
+}
+
+docker-env() {
+  if which docker > /dev/null; then
+    if [[ "${DOCKER_ENV}" == "" ]]; then
+      echo "(local)"
+    else
+      echo "(${DOCKER_ENV})"
+    fi
+  fi
 }
 
 RED="\[\033[0;31m\]"
@@ -55,6 +65,13 @@ uxdate() {
       echo $date, `date -j -f "%Y-%m-%d %H:%M:%S" "$date" "+%s"`
     done
   fi
+}
+
+# [working dirs & projects]
+export WSPACE=$HOME'/workspace'
+alias lw='ls $WSPACE'
+cw() {
+  cd $WSPACE/$1
 }
 
 # [git]
@@ -98,6 +115,9 @@ alias gsd='gsync dev'
 gmlog() {
   git log --pretty=format:'%h %ae %s (%cd)' --date=iso $1^..$1
 }
+# switch acc
+alias g17='cw dotfiles;gco master;cd -'
+alias g08='cw dotfiles;gco 08;cd -'
 
 # [tools]
 # require Ghostscript
@@ -119,29 +139,22 @@ shrinkpdf() {
 }
 # require python
 alias pj='python -m json.tool'
+# https://superuser.com/questions/61185/why-do-i-get-files-like-foo-in-my-tarball-on-os-x
+export COPYFILE_DISABLE=true
+# require docker
+source ~/.dockerrc
+# require direnv
+eval "$(direnv hook bash)"
 
-# [working dirs & projects]
-export WSPACE=$HOME'/workspace'
-alias lw='ls $WSPACE'
-cw() {
-  cd $WSPACE/$1
-}
 
 # [env]
 if [ -f ~/.local_bashenv.sh ]; then
   . ~/.local_bashenv.sh
 fi
 
-# require direnv
-eval "$(direnv hook bash)"
-
 # [sysconfig]
 ulimit -n 10000
 
-# [docker]
-source ~/.dockerrc
-
 # [PATH]
-export GOPATH=$WSPACE/go
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$WSPACE/go:$HOME/.rvm/bin"
+export PATH="$PATH:$WSPACE/golib/bin:$HOME/Downloads:$HOME/.rvm/bin"

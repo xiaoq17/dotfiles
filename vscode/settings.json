@@ -1,12 +1,23 @@
 // 将设置放入此文件中以覆盖默认设置
 {
     "workbench.colorTheme": "Monokai",
+    // "workbench.colorTheme": "Visual Studio Light",
     "files.exclude": {
         "**/.git": true,
         "**/.svn": true,
         "**/.hg": true,
         "**/CVS": true,
         "**/.DS_Store": true,
-        "**/*.pyc": true
+        "**/*.a": true,
+        "**/*.pyc": true,
+        "**/.cache": true,
+        "**/bin": true,
+        "**/__pycache__": true
     },
+    "terminal.external.osxExec": "iTerm.app",
+    "window.zoomLevel": 0,
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "python.formatting.formatOnSave": true,
+    "vim.disableAnnoyingNeovimMessage": true
 }
