@@ -9,7 +9,7 @@
 	tree = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %C(bold blue)<%an>%Creset %Cgreen(%cd)%Creset' --graph --date=short
 	di = icdiff
 [core]
-	editor = /usr/bin/vim
+	editor = code --wait
 	excludesfile = ~/.gitignore_global
 [push]
 	default = simple
@@ -17,3 +17,7 @@
 	clean = git lfs clean %f
 	smudge = git lfs smudge %f
 	required = true
+[github]
+	user = xiaoq17
+[ghi]
+	token = !security find-internet-password -a xiaoq17 -s github.com -l 'ghi token' -w
