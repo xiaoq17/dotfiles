@@ -11,6 +11,8 @@
 ```bash
 $ cd golib
 $ go get -u github.com/golang/dep/cmd/dep
+$ go get -u github.com/alecthomas/gometalinter
+$ gometalinter --install &> /dev/null
 ```
 
 ## Dotfiles
