@@ -37,7 +37,6 @@ docker-enter() {
   docker exec -it $name $cmd
 }
 
-alias dtools='docker run -it --rm=true index.qiniu.com/qiniutools bash'
 alias dockviz="docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock nate/dockviz"
 
 # [k8s]

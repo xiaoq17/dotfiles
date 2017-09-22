@@ -9,6 +9,7 @@ clasp
 cloc
 coreutils
 ctop
+curl
 delve
 direnv
 docker-machine
@@ -19,7 +20,6 @@ freetype
 gd
 gdbm
 git
-glide
 go
 graphviz
 gringo

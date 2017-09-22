@@ -1,5 +1,4 @@
-.DS_Store
-*.swp
-*~
-*.local
-vpns/
+!golib/.envrc
+golib/src
+golib/bin
+golib/pkg

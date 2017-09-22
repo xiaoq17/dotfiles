@@ -145,7 +145,8 @@ export COPYFILE_DISABLE=true
 source ~/.dockerrc
 # require direnv
 eval "$(direnv hook bash)"
-
+# require brew
+export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
 
 # [env]
 if [ -f ~/.local_bashenv.sh ]; then
@@ -157,4 +158,4 @@ ulimit -n 10000
 
 # [PATH]
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$WSPACE/golib/bin:$HOME/Downloads:$HOME/.rvm/bin"
+export PATH="$PATH:$WSPACE/dotfiles/golib/bin:$HOME/Downloads:$HOME/.rvm/bin"
