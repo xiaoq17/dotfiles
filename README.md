@@ -3,7 +3,7 @@
 * [brew http://brew.sh/](http://brew.sh/)
 
   ```bash
-  $ cat ./brew-list.txt | xargs -t -i {} brew install {}
+  $ cat ./brew-list.txt | xargs -t -I {} brew install {}
   ```
 
 ## Languages - go
