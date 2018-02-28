@@ -8,6 +8,10 @@ docker-cleanup() {
   fi
 }
 
+docker-ip() {
+  docker-machine ip $(docker-machine active)
+}
+
 mini-docker() {
   echo "=== change to minikube docker ENV ==="
   eval $(minikube docker-env)
@@ -40,6 +44,7 @@ docker-enter() {
 alias dockviz="docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock nate/dockviz"
 
 # [k8s]
+alias k="kubectl"
 source <(kubectl completion bash)
 kubessh() {
   if [ "$1" == "" ]; then

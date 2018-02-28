@@ -86,6 +86,7 @@ alias glog="git log --pretty=format:'%Cred%h%Creset - %s %C(bold blue)<%an>%Cres
 alias gbr='git branch -avv'
 alias gbl='git branch -vv'
 alias gbd='git branch -d'
+alias gbdd='git branch -D'
 gsync() {
   branch='develop'
   if [ $1 ]; then
