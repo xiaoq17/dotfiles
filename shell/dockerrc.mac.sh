@@ -1,5 +1,4 @@
 # [docker]
-# require docker for mac
 docker-cleanup() {
   docker rmi -f $(docker images -q --filter='dangling=true')
   # this will remove db data volumns, be careful
@@ -45,7 +44,7 @@ alias dockviz="docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock 
 
 # [k8s]
 alias k="kubectl"
-source <(kubectl completion bash)
+alias kc="source <(kubectl completion $SHELLTYPE)"
 kubessh() {
   if [ "$1" == "" ]; then
     echo "Usage: kubessh <pod>"
