@@ -1,7 +1,7 @@
 #!/bin/sh
 
 if [[ $dotfiles == "" ]]; then
-  dotfiles=`pwd`
+	dotfiles=$(pwd)
 fi
 
 ln -s ${dotfiles}/shell/system.mac.sh ~/.systemrc
