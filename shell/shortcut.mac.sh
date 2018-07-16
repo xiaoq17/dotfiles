@@ -1,4 +1,5 @@
 # require brew
+export HOMEBREW_VERBOSE=1
 export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
 
 # require git
