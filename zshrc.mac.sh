@@ -1,6 +1,5 @@
 export ZSH="$HOME/.oh-my-zsh"
 export SHELLTYPE="zsh"
-export PATH="$PATH:$WSPACE/dotfiles/golib/bin:$HOME/Downloads"
 
 plugins=(
   git
@@ -17,4 +16,5 @@ do
   fi
 done
 
+export PATH="$PATH:$WSPACE/dotfiles/golib/bin:$HOME/Downloads"
 
