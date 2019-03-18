@@ -5,6 +5,15 @@ plugins=(
   git
 )
 
+zhelp() {
+  plugin=~/.oh-my-zsh/plugins/$1/$1.plugin.zsh
+	if [[ $2 == "all" ]]; then
+    cat $plugin
+  else
+    cat $plugin | grep alias
+  fi
+}
+
 ZSH_THEME="robbyrussell" && source $ZSH/oh-my-zsh.sh
 
 alias rl="clear;source $HOME/.zshrc"
