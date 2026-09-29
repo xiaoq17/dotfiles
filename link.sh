@@ -1,18 +1,41 @@
-#!/bin/sh
+#!/usr/bin/env bash
+# Idempotent dotfiles linker. Safe to run multiple times.
+set -euo pipefail
 
-if [[ $dotfiles == "" ]]; then
-	dotfiles=$(pwd)
-fi
+DOTFILES="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-ln -s ${dotfiles}/shell/system.mac.sh ~/.systemrc
-ln -s ${dotfiles}/shell/dockerrc.mac.sh ~/.dockerrc
-ln -s ${dotfiles}/shell/workspace.mac.sh ~/.workspacerc
-ln -s ${dotfiles}/shell/shortcut.mac.sh ~/.shortcutrc
+link() {
+	local src="$1"
+	local dst="$2"
+	mkdir -p "$(dirname "$dst")"
+	ln -sfn "$src" "$dst"
+	echo "linked $dst -> $src"
+}
 
-# ln -s ${dotfiles}/shell/bashrc.mac.sh ~/.bashrc
-# ln -s ${dotfiles}/bash_profile.mac.sh ~/.bash_profile
+# Remove symlinks left over from the old layout (only if they are symlinks).
+unlink_old() {
+	local dst="$1"
+	if [ -L "$dst" ]; then
+		rm "$dst"
+		echo "removed stale link $dst"
+	fi
+}
 
-ln -s ${dotfiles}/zshrc.mac.sh ~/.zshrc
+# --- shell entry point ---
+link "$DOTFILES/zsh/zshrc"             "$HOME/.zshrc"
+unlink_old "$HOME/.bash_profile"
+unlink_old "$HOME/.bashrc"
+unlink_old "$HOME/.bash_term"
+unlink_old "$HOME/.toolsrc"
+unlink_old "$HOME/.workspacerc"
+unlink_old "$HOME/.vimrc"
+unlink_old "$HOME/.tmux.conf"
 
-ln -s ${dotfiles}/git/gitconfig ~/.gitconfig
-ln -s ${dotfiles}/git/gitignore_global ~/.gitignore_global
+# --- git ---
+link "$DOTFILES/git/gitconfig"         "$HOME/.gitconfig"
+link "$DOTFILES/git/gitignore_global"  "$HOME/.gitignore_global"
+
+# --- machine-local secrets (never committed) ---
+touch "$HOME/.secrets"
+
+echo "done."

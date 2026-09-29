@@ -1,4 +1,0 @@
-yapf
-autopep8
-pylint
-virtualenv

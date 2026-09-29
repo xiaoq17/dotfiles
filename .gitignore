@@ -1,4 +1,1 @@
-!golib/.envrc
-golib/src
-golib/bin
-golib/pkg
+.DS_Store

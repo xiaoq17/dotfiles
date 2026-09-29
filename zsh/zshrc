@@ -1,0 +1,36 @@
+# zsh entry point — symlinked from ~/.zshrc
+
+export ZSH="$HOME/.oh-my-zsh"
+export SHELLTYPE="zsh"
+
+plugins=(git)
+ZSH_THEME="robbyrussell"
+
+# local completion scripts (must be set before oh-my-zsh runs compinit)
+[ -d "$HOME/.zsh/completions" ] && fpath=("$HOME/.zsh/completions" $fpath)
+# 跳过 compaudit 权限扫描
+export ZSH_DISABLE_COMPFIX=true
+
+# Resolve repo root through the ~/.zshrc symlink:
+# %x = current source file (prompt expansion), captured via ${(%):-...};
+# :A resolves symlinks, then :h twice -> dotfiles root.
+__src="${(%):-%x}"
+DOTFILES="${__src:A:h:h}"
+unset __src
+
+# oh-my-zsh
+source "$ZSH/oh-my-zsh.sh"
+
+# direnv (official zsh hook)
+if command -v direnv >/dev/null 2>&1; then
+	eval "$(direnv hook zsh)"
+fi
+
+# shared config, then zsh-local config
+for f in \
+	"$DOTFILES/shell/env.sh" \
+	"$DOTFILES/shell/aliases.sh" \
+	"$DOTFILES/shell/functions.sh" \
+	"$DOTFILES/zsh/aliases.zsh"; do
+	[ -f "$f" ] && source "$f"
+done

@@ -1,0 +1,9 @@
+# Skillsfile — declarative agent skills. Install with: make skill
+#
+# Columns (pipe-separated):
+#   1. name       installed as ~/.agents/skills/<name>
+#   2. repo       git URL to fetch from
+#   3. subpath    directory inside the repo containing the skill
+# A trailing 4th column may pin a commit/tag/branch; omitted -> repo HEAD.
+
+lieflat-less-ai-tone | https://github.com/larashero3-dotcom/writing-dna-skill | skills/lieflat-less-ai-tone

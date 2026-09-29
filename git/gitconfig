@@ -1,15 +1,24 @@
 [user]
 	name = Qin Xiao
-	email = xiaoqin@caicloud.io
+	email = xiaoqin.7@bytedance.com
 [color]
 	ui = true
-[core]
-#  gitproxy = /usr/local/bin/proxy-wrapper
 [alias]
-	tree = log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %C(bold blue)<%an>%Creset %Cgreen(%cd)%Creset' --graph --date=short
-	di = icdiff
+	# status / log
+	st = status -sb
+	lg = log --graph --oneline --decorate
+	last = show --stat --oneline HEAD
+	recent = for-each-ref --sort=-committerdate refs/heads/ --format='%(committerdate:short) %(refname:short)'
+	# workflow
+	sync = pull --rebase --autostash
+	amend = commit --amend --no-edit
+	unstage = reset -q HEAD --
+	wip = !git add -A && git commit -q -m WIP
+	unwip = reset --soft HEAD~1
+	# delete merged local branches (protected: master/main), prune remotes
+	purge = "!git fetch -p && for b in $(git branch --merged | grep -vE '^\\*|master|main' | tr -d ' '); do git branch -d \"$b\"; done"
 [core]
-	editor = code --wait
+	editor = vim
 	excludesfile = ~/.gitignore_global
 [push]
 	default = simple
@@ -21,3 +30,5 @@
 	user = xiaoq17
 [ghi]
 	token = !security find-internet-password -a xiaoq17 -s github.com -l 'ghi token' -w
+[safe]
+	directory = *
